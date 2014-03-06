@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="TalkBot/MainActivity.cs">
+    <Files>
+      <File FileName="TalkBot/Resources/values/Strings.xml" Line="9" Column="34" />
+      <File FileName="TalkBot/MainActivity.cs" Line="65" Column="55" />
+      <File FileName="TalkBot/Resources/menu/main_menu.xml" Line="15" Column="59" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Talk_220Bot MonoForAntroid.PreferredDevice="3.7in WVGA (Nexus One)" AndroidDeviceId-Debug="0146970F1101E008" />
+</Properties>
