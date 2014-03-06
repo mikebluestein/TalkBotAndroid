@@ -9,15 +9,14 @@
         android:orientation="horizontal">
         <EditText
             android:id="@+id/textToSpeak"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1.0" />
+            android:layout_weight="1" />
         <Button
             android:id="@+id/speechButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Speak"
-            android:layout_weight="0.2" />
+            android:text="@string/speak" />
     </LinearLayout>
     <ListView
         android:id="@+id/speechItemListView"

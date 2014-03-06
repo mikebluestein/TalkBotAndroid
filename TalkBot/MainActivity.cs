@@ -12,7 +12,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace TalkBot
 {
-    [Activity (Label = "Talk Bot", MainLauncher = true, Theme = "@android:style/Theme.Holo.Light", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
+		[Activity (Label = "@string/app_name", MainLauncher = true, Theme = "@android:style/Theme.Holo.Light", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
     public class MainActivity : Activity, TextToSpeech.IOnInitListener
     {
         TextToSpeech speech;
@@ -33,7 +33,7 @@ namespace TalkBot
             speechItemListView = FindViewById<ListView> (Resource.Id.speechItemListView);
 
             speech = new TextToSpeech (this, this);
-            speech.SetLanguage (Java.Util.Locale.Us);
+						speech.SetLanguage (Java.Util.Locale.Default); //translate to default locale
 
             speechButton.Click += (object sender, EventArgs e) => {
 
@@ -42,7 +42,7 @@ namespace TalkBot
                 if (!String.IsNullOrEmpty (text)) {
                     speech.Speak (text, QueueMode.Add, null);
                 } else {
-                    Toast.MakeText (this, "Please enter some text to speak", ToastLength.Short).Show ();
+										Toast.MakeText (this, Resource.String.enter_text_to_speak, ToastLength.Short).Show ();
                 }
             };
 
@@ -52,33 +52,55 @@ namespace TalkBot
                 speechItemListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
                     textToSpeak.Text = items [e.Position];
                     speechItemListView.SetSelection (e.Position);
+										this.InvalidateOptionsMenu ();
                 };
             }
+
+						textToSpeak.TextChanged += (sender, e) => this.InvalidateOptionsMenu();
         }
 
         public override bool OnCreateOptionsMenu (IMenu menu)
         {
-            menu.Add (0, 0, 0, "Save Item");
-            menu.Add (0, 1, 1, "Delete Item");
+
+			MenuInflater.Inflate (Resource.Menu.main_menu, menu);
+						int i = speechItemListView.CheckedItemPosition;
+						
+						//if no text don't allow saving
+						if (string.IsNullOrWhiteSpace (textToSpeak.Text)) {
+							menu.RemoveItem (Resource.Id.menu_save);
+						}
+				
+						//if nothing selected don't allow deleting
+						if (i < 0) {
+							menu.RemoveItem (Resource.Id.menu_delete);
+						}
+				
             return true;
         }
 
         public override bool OnOptionsItemSelected (IMenuItem item)
         {
             switch (item.ItemId) {
-            case 0:
+							case Resource.Id.menu_save:
+								//check against no data entered
+								if(string.IsNullOrWhiteSpace(textToSpeak.Text)){
+									Toast.MakeText (this, Resource.String.enter_text_to_save, ToastLength.Short).Show ();
+									return true;
+								}
                 items.Add (textToSpeak.Text);
                 adapter.Add (textToSpeak.Text);
+								this.InvalidateOptionsMenu ();
                 return true;
-            case 1:
+							case Resource.Id.menu_delete:
                 int i = speechItemListView.CheckedItemPosition;
                 if (i >= 0) {
                     items.RemoveAt (i);
                     adapter.Clear ();
                     adapter.AddAll (items);
                     speechItemListView.SetItemChecked (-1, true);
+										this.InvalidateOptionsMenu ();
                 } else {
-                    Toast.MakeText (this, "Please select an item to delete", ToastLength.Short).Show ();
+									Toast.MakeText (this, Resource.String.select_to_delete, ToastLength.Short).Show ();
                 }
                 return true;
             default:
@@ -102,6 +124,7 @@ namespace TalkBot
 
             adapter = new ArrayAdapter<string> (this, Android.Resource.Layout.SimpleListItemChecked, items);
             speechItemListView.Adapter = adapter;
+						this.InvalidateOptionsMenu ();
         }
 
         protected override void OnPause ()

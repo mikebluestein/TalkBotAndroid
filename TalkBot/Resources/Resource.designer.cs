@@ -45,7 +45,13 @@ namespace TalkBot
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int Icon = 2130837504;
+			public const int ic_action_content_remove = 2130837504;
+			
+			// aapt resource value: 0x7f020001
+			public const int ic_action_content_save = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int ic_launcher = 2130837506;
 			
 			static Drawable()
 			{
@@ -60,14 +66,20 @@ namespace TalkBot
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050001
-			public const int speechButton = 2131034113;
+			// aapt resource value: 0x7f060004
+			public const int menu_delete = 2131099652;
 			
-			// aapt resource value: 0x7f050002
-			public const int speechItemListView = 2131034114;
+			// aapt resource value: 0x7f060003
+			public const int menu_save = 2131099651;
 			
-			// aapt resource value: 0x7f050000
-			public const int textToSpeak = 2131034112;
+			// aapt resource value: 0x7f060001
+			public const int speechButton = 2131099649;
+			
+			// aapt resource value: 0x7f060002
+			public const int speechItemListView = 2131099650;
+			
+			// aapt resource value: 0x7f060000
+			public const int textToSpeak = 2131099648;
 			
 			static Id()
 			{
@@ -95,11 +107,45 @@ namespace TalkBot
 			}
 		}
 		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f050000
+			public const int main_menu = 2131034112;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
+			{
+			}
+		}
+		
 		public partial class String
 		{
 			
 			// aapt resource value: 0x7f040000
 			public const int app_name = 2130968576;
+			
+			// aapt resource value: 0x7f040005
+			public const int enter_text_to_save = 2130968581;
+			
+			// aapt resource value: 0x7f040006
+			public const int enter_text_to_speak = 2130968582;
+			
+			// aapt resource value: 0x7f040002
+			public const int menu_delete = 2130968578;
+			
+			// aapt resource value: 0x7f040001
+			public const int menu_save = 2130968577;
+			
+			// aapt resource value: 0x7f040004
+			public const int select_to_delete = 2130968580;
+			
+			// aapt resource value: 0x7f040003
+			public const int speak = 2130968579;
 			
 			static String()
 			{
